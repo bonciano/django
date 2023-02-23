@@ -1,3 +1,7 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
 <h1>
     Tareas
 </h1>
@@ -5,10 +9,25 @@
 {% for tarea in tareas %}
 
 <h1>{{ tarea.titulo }}</h1>
+
+{% if tarea.hecho == False %}
+<p>Tarea pendiente</p>
+{% else %}
+<p>Tarea realizada</p>
+{% endif %}
+
 <p>{{ tarea.descripcion }}</p>
-<p>Proyecto: {{ tarea.Proyecto.nombre }}</p>
+<p>Proyecto: {{ tarea.proyecto.nombre }}</p>
 <button>
     Eliminar
 </button>
-    
+<button>
+    ✅ Hecho
+    <!-- El icono de check se coloca buscando en google "check unicode".
+         La busqueda nos proporciona iconos en unicode para colocar en nuestro codigo
+    -->
+</button>
+
 {% endfor %}
+
+{% endblock %}

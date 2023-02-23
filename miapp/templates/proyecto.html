@@ -1,3 +1,7 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
 <h1>
     Proyectos
 </h1>
@@ -8,3 +12,5 @@
 {% for proyecto in proyectos %} <!-- Abro un ciclo for para mi variable proyectos -->
 <h1>{{proyecto.nombre}}</h1> <!-- Le digo como guardar en el html cada objeto del for recorrido -->
 {% endfor %} <!-- Cierro el ciclo for para mi variable proyectos -->
+
+{% endblock %}
