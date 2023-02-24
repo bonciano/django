@@ -54,3 +54,9 @@ def tareas(request):
 
 def crear_tareas(request):
     return render(request, 'crear_tarea.html')
+
+def lucas(request):
+    return render(request,'lucas.html')
+
+
+
