@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse
 from .models import Proyecto,Tarea
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render, redirect
+from .formularios import CrearNuevaTarea
 
 # Create your views here.
 #def index(request):
@@ -53,7 +53,19 @@ def tareas(request):
     })
 
 def crear_tareas(request):
-    return render(request, 'crear_tarea.html')
+    if request.method == 'GET':
+        return render(request,'crear_tarea.html',{
+            'formulario':CrearNuevaTarea()
+        })
+        # show interface
+#        return render(request,'tarea.html')
+    else:
+        Tarea.objects.create(
+            titulo=request.POST['titulo'],
+            descripcion=request.POST['descripcion'],
+            proyecto_id=2
+        )
+        return redirect('/tareas/')
 
 def lucas(request):
     return render(request,'lucas.html')
