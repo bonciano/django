@@ -52,5 +52,5 @@ def tareas(request):
          'tareas' : tareas
     })
 
-
-
+def crear_tareas(request):
+    return render(request, 'crear_tarea.html')
