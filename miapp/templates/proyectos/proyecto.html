@@ -10,7 +10,11 @@
 </p>
     
 {% for proyecto in proyectos %} <!-- Abro un ciclo for para mi variable proyectos -->
-<h1>{{proyecto.nombre}}</h1> <!-- Le digo como guardar en el html cada objeto del for recorrido -->
+
+<article class="card">
+    <a href="{% url 'detalle_proyectos' proyecto.id %}"><h1>{{proyecto.nombre}}</h1></a> <!-- Le digo como guardar en el html cada objeto del for recorrido -->
+</article>
+
 {% endfor %} <!-- Cierro el ciclo for para mi variable proyectos -->
 
 {% endblock %}

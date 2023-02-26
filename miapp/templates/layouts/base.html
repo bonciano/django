@@ -1,13 +1,27 @@
+{% load static %}
 
-<nav>
-    <ul>
-        <li><a href='/'>Home</a></li>
-        <li><a href='/about'>About</a></li>
-        <li><a href='/proyectos'>Proyectos</a></li>
-        <li><a href='/tareas'>Tareas</a></li>
-        <li><a href='/crear_tarea'>Crear Tareas</a></li>
-    </ul>
-</nav>
-
+<html>
+    <head>
+        <title>Proyecto Django</title>
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    </head>
+    <body>
+        <nav class="navbar container">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'proyectos' %}">Proyectos</a></li>
+                <li><a href="{% url 'tareas' %}">Tareas</a></li>
+                <li><a href="{% url 'crear_tarea' %}">Crear Tareas</a></li>
+                <li><a href="{% url 'crear_proyecto' %}">Crear Proyectos</a></li>
+            </ul>
+        </nav>
+        <main class="container">
+ 
 {% block content %}
 {% endblock %}
+           
+        </main>
+    </body>
+</html>
+

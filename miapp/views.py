@@ -1,27 +1,7 @@
 from django.http import HttpResponse
 from .models import Proyecto,Tarea
-from django.shortcuts import render, redirect
-from .formularios import CrearNuevaTarea
-
-# Create your views here.
-#def index(request):
-#    return HttpResponse('Index page')
-#
-#def hello(request, username):
-#    print(username)
-#    return render("<h2>Hello %s</h2>" % username)
-#
-#def about(request):
-#	return HttpResponse('About')
-#
-#def proyectos(request):
-#    proyectos = list(Proyecto.objects.values())
-#    return JsonResponse(proyectos, safe=False)
-#
-#def tareas(request, id):
-#    tareas = Tarea.objects.get(id=id)
-#    tareas = get_object_or_404(Tarea, id=id)
-#    return HttpResponse('Tareas: %s' % tareas.titulo)
+from django.shortcuts import render, redirect, get_object_or_404
+from .formularios import CrearNuevaTarea, CrearNuevoProyecto
 
 
 # Para poder utilizar html:
@@ -41,20 +21,20 @@ def about(request):
 def proyectos(request):
     #proyectos = list(Proyecto.objects.values())
     proyectos = Proyecto.objects.all()
-    return render(request, 'proyecto.html', {
+    return render(request, 'proyectos/proyecto.html', {
          'proyectos' : proyectos
     })
 
 def tareas(request):
 #    tareas = Tarea.objects.get(id=id)
     tareas = Tarea.objects.all()
-    return render(request, 'tarea.html', {
+    return render(request, 'tareas/tarea.html', {
          'tareas' : tareas
     })
 
 def crear_tareas(request):
     if request.method == 'GET':
-        return render(request,'crear_tarea.html',{
+        return render(request,'tareas/crear_tarea.html',{
             'formulario':CrearNuevaTarea()
         })
         # show interface
@@ -66,6 +46,22 @@ def crear_tareas(request):
             proyecto_id=2
         )
         return redirect('/tareas/')
+
+def crear_proyectos(request):
+    if request.method == 'GET':
+        return render(request, 'proyectos/crear_proyecto.html', {
+        'formulario':CrearNuevoProyecto() })
+    else:
+        Proyecto.objects.create(nombre=request.POST['nombre'])
+        return redirect('proyectos')
+
+def detalle_proyectos(request, id):
+    proyecto = get_object_or_404(Proyecto, id=id)
+    tareas = Tarea.objects.filter(proyecto_id=id)
+    return render(request,'proyectos/detalle.html',{
+        'proyecto':proyecto,
+        'tareas':tareas
+    })
 
 def lucas(request):
     return render(request,'lucas.html')

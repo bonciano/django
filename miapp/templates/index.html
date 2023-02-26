@@ -1,10 +1,13 @@
 {% extends 'layouts/base.html' %}
 
+{% load static %} <!--Con esta propiedad, indicamos que vamos a cargar contenido estatico -->
+
 {% block content %}
 
 <h1>
     Hola, {{ nombre }}, bienvenido a la aplicacion de Django
 </h1>
+<img src="{% static 'vim-01.jpeg' %}" alt="cheatsheet de vim" width="100"> <!-- Esta sintaxis de jinja nos permite cargar contenido estatico (que se almacena en la carpeta /static) -->
 
 <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti iste delectus facilis, voluptates cupiditate quas quae magnam quaerat, veritatis accusamus alias, eum sed. Aut expedita fuga saepe ipsam culpa suscipit!
